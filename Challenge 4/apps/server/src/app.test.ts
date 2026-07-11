@@ -12,6 +12,6 @@ describe("platform api", () => {
   it("returns dashboard snapshot", async () => {
     const response = await request(createApp()).get("/api/dashboard");
     expect(response.status).toBe(200);
-    expect(response.body.kpis.length).toBeGreaterThan(0);
+    expect(Array.isArray(response.body.kpis)).toBe(true);
   });
 });

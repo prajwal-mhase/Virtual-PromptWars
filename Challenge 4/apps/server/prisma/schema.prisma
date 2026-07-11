@@ -57,7 +57,7 @@ model User {
   conversations AIConversation[]
   notifications Notification[]
   volunteer    Volunteer?
-  vendorUser   FoodVendor?
+  vendorUser   FoodVendor[]
 }
 
 model Session {

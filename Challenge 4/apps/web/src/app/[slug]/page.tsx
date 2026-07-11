@@ -5,8 +5,9 @@ import { moduleCopy } from "@/lib/modules";
 
 const standalone = new Set(["features", "solutions", "login", "register", "forgot-password"]);
 
-export default function DynamicPage({ params }: { params: { slug: string } }) {
-  if (standalone.has(params.slug)) return notFound();
-  if (!moduleCopy[params.slug]) return notFound();
-  return <AppShell><ModulePage slug={params.slug} /></AppShell>;
+export default async function DynamicPage({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
+  if (standalone.has(slug)) return notFound();
+  if (!moduleCopy[slug]) return notFound();
+  return <AppShell><ModulePage slug={slug} /></AppShell>;
 }

@@ -1,11 +1,13 @@
 import bcrypt from "bcryptjs";
-import { PrismaClient, RoleName } from "@prisma/client";
+import { PrismaClient } from "@prisma/client";
 
 const prisma = new PrismaClient();
-const passwordHash = await bcrypt.hash("StadiumOS2026!", 12);
+const roleNames = ["ADMIN", "MANAGER", "VOLUNTEER", "VENDOR", "VISITOR"] as const;
+type RoleName = (typeof roleNames)[number];
 
 async function main() {
-  for (const name of Object.values(RoleName)) {
+  const passwordHash = await bcrypt.hash("StadiumOS2026!", 12);
+  for (const name of roleNames) {
     await prisma.role.upsert({ where: { name }, update: {}, create: { name } });
   }
 
@@ -13,11 +15,11 @@ async function main() {
   const roleId = (name: RoleName) => roles.find((role) => role.name === name)!.id;
 
   const users = [
-    ["Avery Chen", "admin@stadiumos.ai", RoleName.ADMIN],
-    ["Maya Singh", "manager@stadiumos.ai", RoleName.MANAGER],
-    ["Lena Ortiz", "volunteer@stadiumos.ai", RoleName.VOLUNTEER],
-    ["Noah Kim", "vendor@stadiumos.ai", RoleName.VENDOR],
-    ["Sam Carter", "visitor@stadiumos.ai", RoleName.VISITOR]
+    ["Avery Chen", "admin@stadiumos.ai", "ADMIN"],
+    ["Maya Singh", "manager@stadiumos.ai", "MANAGER"],
+    ["Lena Ortiz", "volunteer@stadiumos.ai", "VOLUNTEER"],
+    ["Noah Kim", "vendor@stadiumos.ai", "VENDOR"],
+    ["Sam Carter", "visitor@stadiumos.ai", "VISITOR"]
   ] as const;
 
   for (const [name, email, role] of users) {

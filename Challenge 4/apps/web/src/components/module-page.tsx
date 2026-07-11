@@ -6,7 +6,11 @@ import { api, fetchSnapshot } from "@/lib/api";
 import { moduleCopy } from "@/lib/modules";
 
 export function ModulePage({ slug }: { slug: string }) {
-  const copy = moduleCopy[slug] ?? moduleCopy.analytics;
+  const copy = moduleCopy[slug] ?? {
+    title: "Analytics",
+    subtitle: "Cross-module metrics, funnel performance, operational trends, and executive reporting.",
+    icon: moduleCopy.analytics!.icon
+  };
   const Icon = copy.icon;
   const { data: snapshot } = useQuery({ queryKey: ["snapshot", slug], queryFn: fetchSnapshot });
   const { data: moduleData } = useQuery({ queryKey: ["module", slug], queryFn: () => api<{ data: unknown }>(`/modules/${slug}`) });

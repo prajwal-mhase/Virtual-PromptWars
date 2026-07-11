@@ -32,7 +32,10 @@ export function AssistantConsole() {
     if (!Recognition) return;
     const recognition = new Recognition();
     recognition.lang = language;
-    recognition.onresult = (event) => setMessage(event.results[0][0].transcript);
+    recognition.onresult = (event) => {
+      const transcript = event.results[0]?.[0]?.transcript;
+      if (transcript) setMessage(transcript);
+    };
     recognition.start();
   }
 

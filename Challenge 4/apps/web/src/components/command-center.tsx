@@ -42,8 +42,8 @@ export function CommandCenter() {
         <Card className="min-h-[390px]">
           <CardHeader><CardTitle>Live Stadium Heatmap</CardTitle><Badge tone="watch">Realtime</Badge></CardHeader>
           <CardContent>
-            <div className="relative aspect-[16/9] overflow-hidden rounded-lg border border-black/10 bg-[linear-gradient(90deg,rgba(15,118,110,.13)_1px,transparent_1px),linear-gradient(rgba(15,118,110,.13)_1px,transparent_1px)] bg-[size:48px_48px] dark:border-white/10">
-              <div className="absolute inset-[18%] rounded-[48%] border-[10px] border-stadium-pitch/50" />
+            <div className="stadium-grid relative aspect-video overflow-hidden rounded-lg border border-black/10 dark:border-white/10">
+              <div className="stadium-bowl absolute border-stadium-pitch/50" />
               <AnimatePresence>
                 {snapshot.zones.map((zone) => (
                   <motion.div key={zone.id} className="absolute -translate-x-1/2 -translate-y-1/2 rounded-full border border-white/60 shadow-enterprise" style={{ left: `${zone.x}%`, top: `${zone.y}%`, width: zone.density * 1.4, height: zone.density * 1.4, background: zone.congestionRisk === "HIGH" ? "rgba(220,38,38,.48)" : zone.congestionRisk === "MEDIUM" ? "rgba(183,121,31,.48)" : "rgba(15,118,110,.42)" }} animate={{ scale: [1, 1.05, 1] }} transition={{ repeat: Infinity, duration: 2.4 }}>

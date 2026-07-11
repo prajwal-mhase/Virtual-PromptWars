@@ -4,6 +4,9 @@
   "version": "1.0.0",
   "description": "GenAI-powered smart stadium and tournament operations platform for FIFA-scale venues.",
   "packageManager": "npm@10.8.2",
+  "engines": {
+    "node": "22.x"
+  },
   "workspaces": [
     "apps/*",
     "packages/*"

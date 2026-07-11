@@ -18,6 +18,9 @@
     "db:migrate": "npm run db:migrate -w @stadiumos/server",
     "db:seed": "npm run db:seed -w @stadiumos/server"
   },
+  "overrides": {
+    "postcss": "^8.5.10"
+  },
   "devDependencies": {
     "@types/node": "^22.10.2",
     "prettier": "^3.4.2",

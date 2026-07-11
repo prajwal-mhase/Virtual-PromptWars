@@ -15,11 +15,11 @@ flowchart LR
 
 ## Principles
 
-- Monorepo with isolated apps and shared packages.
-- REST APIs use route modules, DTO validation, service boundaries, centralized security middleware, and typed responses.
-- Realtime operational snapshots are broadcast over WebSocket every five seconds.
-- Gemini enriches assistant responses, incident analysis, summaries, and recommendations; deterministic fallback keeps the system usable without a key.
-- PWA-ready frontend supports dark/light mode, responsive dashboards, keyboard navigation, and accessible controls.
+- **Monorepo**: isolated apps + shared packages.
+- **REST API boundaries**: route modules, DTO validation, typed responses, centralized security middleware.
+- **Realtime snapshots**: operational updates broadcast over WebSocket every five seconds.
+- **AI enrichment**: Gemini supports assistant responses and incident analysis; deterministic fallback keeps the system usable without a key.
+- **PWA-ready frontend**: dark/light mode, responsive dashboards, keyboard navigation, and accessible controls.
 
 ## Runtime
 
@@ -28,3 +28,4 @@ flowchart LR
 - `packages/types`: shared operational contracts.
 - `packages/ui`: shared shadcn-style primitives.
 - `packages/config`: shared Tailwind and TypeScript configuration.
+

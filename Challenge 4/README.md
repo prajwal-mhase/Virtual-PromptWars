@@ -1,12 +1,30 @@
 # StadiumOS AI
 
-GenAI-powered smart stadium and tournament operations platform for FIFA World Cup 2026 venues. The monorepo includes a Next.js enterprise UI, Express/Prisma backend, PostgreSQL schema, Redis-ready services, WebSocket realtime operations, Gemini-powered assistant, Docker, CI, tests, and documentation.
+GenAI-powered smart stadium and tournament operations platform for FIFA World Cup 2026 venues. Monorepo includes a Next.js UI, Express/Prisma backend, PostgreSQL schema, Redis-ready services, WebSocket realtime operations, a Gemini-powered assistant, Docker, CI, tests, and documentation.
+
+## Features
+
+- **AI Command Center**: KPIs, incidents, crowd density, weather, ticketing, parking, transport, and recommended actions.
+- **Gemini assistant**: streaming-ready API, multilingual prompts, voice input/output, and conversation history (with deterministic fallback if `GEMINI_API_KEY` is missing).
+- **Operational modules**: crowd intelligence, incident response, navigation, parking, food, tickets, volunteers, vendors, maintenance, sustainability, reports, notifications, and settings.
 
 ## Quick Start
 
+### 1) Install
+
 ```bash
 npm install
+```
+
+### 2) Configure environment
+
+```bash
 cp .env.example .env
+```
+
+### 3) Run dependencies and start services
+
+```bash
 docker compose up -d postgres redis
 npm run db:generate
 npm run db:migrate
@@ -14,9 +32,11 @@ npm run db:seed
 npm run dev
 ```
 
-Web: `http://localhost:3000`  
-API: `http://localhost:4000/api`  
-Health: `http://localhost:4000/api/health`
+## Local URLs
+
+- Web: `http://localhost:3000`
+- API: `http://localhost:4000/api`
+- Health: `http://localhost:4000/api/health`
 
 ## Demo Accounts
 
@@ -28,7 +48,7 @@ Health: `http://localhost:4000/api/health`
 | Vendor | vendor@stadiumos.ai | StadiumOS2026! |
 | Visitor | visitor@stadiumos.ai | StadiumOS2026! |
 
-## Structure
+## Repo Structure
 
 ```text
 apps/web       Next.js, TailwindCSS, shadcn-style UI, dashboards, PWA
@@ -38,14 +58,6 @@ packages/types Shared domain and API types
 packages/config Shared TypeScript, ESLint, Tailwind tokens
 docs           Architecture, ERD, API, deployment, contributing
 ```
-
-## Highlights
-
-- AI Command Center with KPIs, incidents, crowd density, weather, ticketing, parking, transport, and recommended actions.
-- Gemini-backed assistant with streaming-ready API, multilingual prompt support, voice input/output in the browser, and conversation history.
-- Operational modules for crowd intelligence, incident response, navigation, parking, food, tickets, volunteers, vendors, maintenance, sustainability, reports, notifications, and settings.
-- Production backend structure: controllers, services, repositories, DTO validation, security middleware, logging, rate limits, pagination, filtering, searching, and RBAC.
-- Docker Compose for PostgreSQL, Redis, server, and web.
 
 ## Commands
 
@@ -67,3 +79,4 @@ npm run db:seed
 - [Environment Setup](docs/environment.md)
 - [Contributing](docs/contributing.md)
 - [License](LICENSE)
+

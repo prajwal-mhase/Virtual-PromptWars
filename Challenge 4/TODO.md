@@ -1,9 +1,7 @@
-# Task TODO - Run frontend locally
+# TODO
 
-- [x] Install dependencies
-- [x] Create `.env` from `.env.example`
-- [ ] Start Postgres + Redis (Docker)
-- [x] Run Prisma generate/migrate/seed
-- [ ] Start frontend dev server
-- [ ] Verify UI at http://localhost:3000
+- [ ] Add deterministic clean step before Next build in `apps/web/package.json` (prebuild: rimraf .next)
+- [x] Re-run `npm run build -w @stadiumos/web` locally to confirm success (after prebuild clean fix)
+
+- [ ] (If needed) adjust turbo caching/build concurrency settings for Vercel
 

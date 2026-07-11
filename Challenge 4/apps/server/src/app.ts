@@ -11,7 +11,10 @@ export function createApp() {
   app.use(morgan("combined"));
   app.use("/api/auth", authRouter);
   app.use("/api", platformRouter);
-  app.use((_req, res) => res.status(404).json({ error: "Route not found" }));
+  app.use((req, res) => {
+    console.error(`[api][404] ${req.method} ${req.originalUrl}`);
+    res.status(404).json({ error: "Route not found" });
+  });
   app.use((error: unknown, _req: express.Request, res: express.Response, _next: express.NextFunction) => {
     const message = error instanceof Error ? error.message : "Internal server error";
     res.status(500).json({ error: message });

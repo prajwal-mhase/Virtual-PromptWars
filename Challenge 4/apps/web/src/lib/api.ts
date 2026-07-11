@@ -4,12 +4,18 @@ export const API_URL = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:4000
 export const WS_URL = process.env.NEXT_PUBLIC_WS_URL ?? "ws://localhost:4000";
 
 export async function api<T>(path: string, init?: RequestInit): Promise<T> {
-  const response = await fetch(`${API_URL}${path}`, {
+  const url = `${API_URL}${path}`;
+  const response = await fetch(url, {
     ...init,
     headers: { "Content-Type": "application/json", ...(init?.headers ?? {}) },
     cache: "no-store"
   });
-  if (!response.ok) throw new Error(await response.text());
+
+  if (!response.ok) {
+    const body = await response.text();
+    throw new Error(`[api] ${response.status} ${response.statusText} -> ${url} | body: ${body}`);
+  }
+
   return response.json() as Promise<T>;
 }
 

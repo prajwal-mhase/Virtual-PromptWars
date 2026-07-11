@@ -1,0 +1,27 @@
+{
+  "name": "stadiumos-ai",
+  "private": true,
+  "version": "1.0.0",
+  "description": "GenAI-powered smart stadium and tournament operations platform for FIFA-scale venues.",
+  "packageManager": "npm@10.8.2",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "dev": "npm run dev --workspaces --if-present",
+    "build": "npm run build --workspaces --if-present",
+    "lint": "npm run lint --workspaces --if-present",
+    "test": "npm run test --workspaces --if-present",
+    "format": "prettier --write \"**/*.{ts,tsx,js,json,md,css,yml,yaml}\"",
+    "db:generate": "npm run db:generate -w @stadiumos/server",
+    "db:migrate": "npm run db:migrate -w @stadiumos/server",
+    "db:seed": "npm run db:seed -w @stadiumos/server"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.2",
+    "prettier": "^3.4.2",
+    "turbo": "^2.3.3",
+    "typescript": "^5.7.2"
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "name": "@stadiumos/config",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    "./tailwind": "./tailwind.ts",
+    "./eslint": "./eslint.js",
+    "./tsconfig": "./tsconfig.base.json"
+  },
+  "scripts": {
+    "build": "tsc --noEmit",
+    "lint": "tsc --noEmit",
+    "test": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "typescript": "^5.7.2"
+  }
+}

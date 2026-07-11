@@ -41,14 +41,29 @@ export function AssistantConsole() {
 
   return (
     <Card className="mx-auto max-w-5xl">
-      <CardHeader><CardTitle>AI Stadium Assistant</CardTitle><select className="rounded-md border border-black/10 bg-transparent px-2 py-1 text-sm dark:border-white/10" value={language} onChange={(event) => setLanguage(event.target.value)}><option value="en">English</option><option value="es">Spanish</option><option value="fr">French</option><option value="hi">Hindi</option><option value="ar">Arabic</option></select></CardHeader>
+      <CardHeader>
+        <CardTitle>AI Stadium Assistant</CardTitle>
+        <div>
+          <label htmlFor="language-select" className="sr-only">Select assistant language</label>
+          <select id="language-select" aria-label="Select assistant language" className="rounded-md border border-black/10 bg-transparent px-2 py-1 text-sm dark:border-white/10" value={language} onChange={(event) => setLanguage(event.target.value)}>
+            <option value="en">English</option>
+            <option value="es">Spanish</option>
+            <option value="fr">French</option>
+            <option value="hi">Hindi</option>
+            <option value="ar">Arabic</option>
+          </select>
+        </div>
+      </CardHeader>
       <CardContent>
         <div className="mb-4 h-[56vh] space-y-3 overflow-auto rounded-lg border border-black/10 p-4 dark:border-white/10">
           {messages.map((item, index) => <div key={index} className={item.role === "user" ? "ml-auto max-w-[78%] rounded-lg bg-stadium-ink p-3 text-white" : "mr-auto max-w-[78%] rounded-lg bg-black/5 p-3 dark:bg-white/10"}><p className="text-sm leading-6">{item.content}</p>{item.role === "assistant" && <button aria-label="Read aloud" className="mt-2 text-slate-500" onClick={() => speak(item.content)}><Volume2 size={16} /></button>}</div>)}
         </div>
         <div className="flex gap-2">
           <button aria-label="Voice input" className="rounded-md border border-black/10 px-3 dark:border-white/10" onClick={listen}><Mic size={18} /></button>
-          <input className="min-w-0 flex-1 rounded-md border border-black/10 bg-white/70 px-3 dark:border-white/10 dark:bg-white/5" value={message} onChange={(event) => setMessage(event.target.value)} onKeyDown={(event) => event.key === "Enter" && send()} placeholder="Ask about gates, seats, queues, incidents, parking, accessibility, or emergency playbooks" />
+          <div className="flex-1">
+            <label htmlFor="assistant-input" className="sr-only">Ask the assistant</label>
+            <input id="assistant-input" aria-label="Ask about gates, seats, queues, incidents, parking, accessibility, or emergency playbooks" className="w-full rounded-md border border-black/10 bg-white/70 px-3 py-2 dark:border-white/10 dark:bg-white/5" value={message} onChange={(event) => setMessage(event.target.value)} onKeyDown={(event) => event.key === "Enter" && send()} placeholder="Ask about gates, seats, queues, incidents, parking, accessibility, or emergency playbooks" />
+          </div>
           <Button onClick={send}><Send size={16} />Send</Button>
         </div>
       </CardContent>

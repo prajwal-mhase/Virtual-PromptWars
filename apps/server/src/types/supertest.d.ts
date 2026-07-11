@@ -3,11 +3,15 @@ declare module "supertest" {
 
   interface TestResponse {
     status: number;
-    body: Record<string, unknown>;
+    body: any;
+    headers: Record<string, any>;
   }
 
   interface TestRequest {
     get(path: string): Promise<TestResponse>;
+    post(path: string): TestRequest;
+    set(name: string, value: string): TestRequest;
+    send(data: unknown): Promise<TestResponse>;
   }
 
   export default function request(app: Express): TestRequest;
